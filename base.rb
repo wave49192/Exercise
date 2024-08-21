@@ -1,17 +1,25 @@
-def base(base_type,num)
-  sum =  0
-  new_num = num.to_s.reverse.split("")
+def base_converter(from_base,num,to_base)
+  base10 =  num.to_s.to_i(from_base.to_i)
 
-  new_num.each_with_index do |digit, index|
-    digit = digit.to_i  * (base_type ** index)
-    sum+= digit
+  return '0' if base10 == 0
+  digits = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  result = ''
+  while base10 > 0
+    remainder = base10 % to_base
+    result = digits[remainder] + result
+    base10 /= to_base
   end
-  puts sum
+
+  puts result
+  result
 end
 
-base(10,42)
-base(2,101010)
-base(3,1120)
+base_converter(2,1010,10)
+base_converter(10,42,2)
+base_converter(2,101010,5)
+base_converter(3,1120,4)
+base_converter(16,"A",10)
+base_converter(10,0,3)
 
 
 # https://exercism.org/tracks/ruby/exercises/all-your-base
