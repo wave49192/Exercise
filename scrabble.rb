@@ -1,3 +1,4 @@
+
 def scrabble(words)
   hash_score = {
     'A' => 1,
