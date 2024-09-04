@@ -1,13 +1,16 @@
 def reverse(word)
+  raise ArgumentError, 'Input must be a string-like object' unless word.respond_to?(:length)
+
   new_reversed_char = []
-  raise ArgumentError, "Word cannot be nil" if word.nil?
   (word.length - 1).downto(0) do |i|
     new_reversed_char << word[i]
   end
-  return new_reversed_char.join('')
+
+  new_reversed_char.join('')
 end
 
+puts reverse('hello')
+puts reverse('world')
+puts reverse(123)
 
-reverse('hello')
-reverse('world')
 # https://exercism.org/tracks/ruby/exercises/reverse-string
